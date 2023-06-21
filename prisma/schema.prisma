@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String    @id @default(uuid())
+  name                String
+  email               String    @unique
+  password            String
+  profile_description String?
+  profile_image_url   String?
+  recipes             Recipe[]
+  comments            Comment[]
+  likes               Like[]
+
+  @@map("users")
+}
+
+model Recipe {
+  id          String    @id @default(uuid())
+  title       String
+  description String
+  imagePath   String?   @map("image_path")
+  comments    Comment[]
+  likes       Like[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("recipes")
+}
+
+model Comment {
+  id      String @id @default(uuid())
+  content String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  Recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipeId String @map("recipe_id")
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  @@map("comments")
+}
+
+model Like {
+  id String @id @default(uuid())
+
+  Recipe   Recipe? @relation(fields: [recipeId], references: [id])
+  recipeId String?
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  @@unique([recipeId, userId])
+  @@map("likes")
+}
