@@ -8,15 +8,15 @@ datasource db {
 }
 
 model User {
-  id                  String    @id @default(uuid())
-  name                String
-  email               String    @unique
-  password            String
-  profile_description String?
-  profile_image_url   String?
-  recipes             Recipe[]
-  comments            Comment[]
-  likes               Like[]
+  id                 String    @id @default(uuid())
+  name               String
+  email              String    @unique
+  password           String
+  profileDescription String?   @map("profile_description")
+  profileImageUrl    String?   @map("profile_image_url")
+  recipes            Recipe[]
+  comments           Comment[]
+  likes              Like[]
 
   @@map("users")
 }
