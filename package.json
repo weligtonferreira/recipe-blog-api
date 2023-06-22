@@ -9,7 +9,7 @@
     "dev": "tsnd -T --ignore-watch ./node_modules ./src/server.ts"
   },
   "dependencies": {
-    "@prisma/client": "^4.15.0",
+    "@prisma/client": "^4.16.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -31,7 +31,7 @@
     "@types/node": "^20.3.1",
     "@types/typescript": "^2.0.0",
     "@types/yup": "^0.32.0",
-    "prisma": "^4.15.0",
+    "prisma": "^4.16.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.1.3"
   }
