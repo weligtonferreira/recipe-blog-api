@@ -3,6 +3,7 @@ import 'express-async-errors';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
+import { handleExceptions } from './middlewares/handleExceptions';
 
 dotenv.config({ path: path.resolve() + '/.env' });
 
@@ -12,6 +13,8 @@ class App {
   constructor() {
     this.app = express();
     this.middlewares();
+    this.routes();
+    this.app.use(handleExceptions);
   }
 
   middlewares() {
