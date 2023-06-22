@@ -7,6 +7,8 @@ import { handleExceptions } from './middlewares/handleExceptions';
 
 dotenv.config({ path: path.resolve() + '/.env' });
 
+import userRoutes from './routes/userRoutes';
+
 class App {
   app: Express;
 
@@ -21,6 +23,10 @@ class App {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded());
+  }
+
+  routes() {
+    this.app.use('/users', userRoutes);
   }
 }
 
