@@ -12,7 +12,7 @@ interface IUserRepository {
     id: string,
     updateUserDataInput: User
   ): Promise<IUserFindPropertiesList>;
-  deleteById(id: string): void;
+  deleteById(id: string): Promise<void>;
 }
 
 export default IUserRepository;
