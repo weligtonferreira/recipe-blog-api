@@ -8,6 +8,7 @@ import { handleExceptions } from './middlewares/handleExceptions';
 dotenv.config({ path: path.resolve() + '/.env' });
 
 import userRoutes from './routes/userRoutes';
+import recipeRoutes from './routes/recipeRoutes';
 
 class App {
   app: Express;
@@ -27,6 +28,7 @@ class App {
 
   routes() {
     this.app.use('/users', userRoutes);
+    this.app.use('/recipes', recipeRoutes);
   }
 }
 
