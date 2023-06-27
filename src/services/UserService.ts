@@ -60,7 +60,11 @@ class UserService implements IUserService {
   }
 
   async findAll(): Promise<IUserFindPropertiesList[] | null> {
-    return await UserRepository.findAll();
+    const users = await UserRepository.findAll();
+
+    if (!users) throw new ApplicationErrors('Users not found!', 404);
+
+    return users;
   }
 
   async findById(id: string): Promise<IUserFindPropertiesList | null> {
