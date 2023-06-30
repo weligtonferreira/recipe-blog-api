@@ -57,10 +57,10 @@ model Comment {
 model Like {
   id String @id @default(uuid())
 
-  Recipe   Recipe? @relation(fields: [recipeId], references: [id])
+  recipe   Recipe? @relation(fields: [recipeId], references: [id])
   recipeId String? @map("recipe_id")
 
-  User   User?   @relation(fields: [userId], references: [id])
+  user   User?   @relation(fields: [userId], references: [id])
   userId String? @map("user_id")
 
   @@unique([recipeId, userId])
