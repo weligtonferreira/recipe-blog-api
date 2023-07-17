@@ -63,7 +63,7 @@ class UserController implements IUserController {
 
     await UserService.deleteById(id);
 
-    return res.status(200).json({ message: 'User deleted successfully!' });
+    return res.status(204);
   }
 }
 

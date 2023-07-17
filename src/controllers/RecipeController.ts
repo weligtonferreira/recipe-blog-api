@@ -40,7 +40,7 @@ class RecipeController implements IRecipeController {
 
     await RecipeService.deleteById(id);
 
-    return res.status(200).json({ message: 'Recipe deleted successfully!' });
+    return res.status(204);
   }
 }
 

@@ -40,7 +40,7 @@ class LikeController implements ILikeController {
 
     await LikeService.deleteById(id);
 
-    return res.status(200).json({ message: 'Like deleted successfully!' });
+    return res.status(204);
   }
 }
 

@@ -40,7 +40,7 @@ class CommentController implements ICommentController {
 
     await CommentService.deleteById(id);
 
-    return res.status(200).json({ message: 'Comment deleted successfully!' });
+    return res.status(204);
   }
 }
 
