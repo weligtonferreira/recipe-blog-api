@@ -12,6 +12,8 @@ export function handleExceptions(
     return res.status(err.statusCode).json({ error: err.message });
   }
 
+  console.log(err);
+
   return res.status(500).json({
     status: 'Error',
     message: 'Server internal error',
