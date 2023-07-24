@@ -63,7 +63,7 @@ class UserController implements IUserController {
 
     await UserService.deleteById(id);
 
-    return res.status(204);
+    return res.sendStatus(204);
   }
 }
 
