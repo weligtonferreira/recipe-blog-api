@@ -22,3 +22,19 @@ export async function createUserValidation(userObject: User): Promise<void> {
     throw new ValidationError(error as ValidationError);
   }
 }
+
+export async function updateUserValidation(userObject: User): Promise<void> {
+  const schema = object().shape({
+    name: string().min(3, 'Enter at least 3 digits'),
+    email: string().email('Enter a valid E-mail address'),
+    password: string().min(8, 'Enter at least 8 digits'),
+    profileDescription: string(),
+    profileImageUrl: string(),
+  });
+
+  try {
+    await schema.validate(userObject, { abortEarly: false });
+  } catch (error) {
+    throw new ValidationError(error as ValidationError);
+  }
+}
