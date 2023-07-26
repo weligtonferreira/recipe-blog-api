@@ -30,6 +30,8 @@ class UserService implements IUserService {
   }
 
   async create(createUserDataInput: User): Promise<User> {
+    await createUserValidation(createUserDataInput);
+
     const userEmailExists = await UserRepository.findByEmail(
       createUserDataInput.email
     );
@@ -79,6 +81,8 @@ class UserService implements IUserService {
     id: string,
     updateUserDataInput: User
   ): Promise<IUserFindPropertiesList> {
+    await updateUserValidation(updateUserDataInput);
+
     await this.findById(id);
 
     return await UserRepository.updateById(id, updateUserDataInput);
