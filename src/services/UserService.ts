@@ -6,6 +6,7 @@ import IUserService from '../dto/user/IUserService';
 import IUserFindPropertiesList from '../dto/user/IUserFindPropertiesList';
 import UserRepository from '../repositories/UserRepository';
 import ApplicationErrors from '../errors/ApplicationErrors';
+import { createUserValidation, updateUserValidation } from '../utils/userValidation';
 
 class UserService implements IUserService {
   async authenticate(email: string, password: string) {
