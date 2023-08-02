@@ -16,3 +16,19 @@ export async function createRecipeValidation(
     throw new ValidationError(error as ValidationError);
   }
 }
+
+export async function updateRecipeValidation(
+  recipeObject: Recipe
+): Promise<void> {
+  const schema = object().shape({
+    title: string().min(3),
+    description: string().min(3),
+    imagePath: string(),
+  });
+
+  try {
+    await schema.validate(recipeObject, { abortEarly: false });
+  } catch (error) {
+    throw new ValidationError(error as ValidationError);
+  }
+}
