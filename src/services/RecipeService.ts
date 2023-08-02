@@ -3,9 +3,12 @@ import { Recipe } from '@prisma/client';
 import IRecipeService from '../dto/recipe/IRecipeService';
 import RecipeRepository from '../repositories/RecipeRepository';
 import ApplicationErrors from '../errors/ApplicationErrors';
+import { createRecipeValidation, updateRecipeValidation } from '../utils/recipeValidation';
 
 class RecipeService implements IRecipeService {
   async create(createRecipeDataInput: Recipe): Promise<Recipe> {
+    await createRecipeValidation(createRecipeDataInput);
+
     const recipe = await RecipeRepository.create(createRecipeDataInput);
 
     return recipe;
@@ -28,6 +31,8 @@ class RecipeService implements IRecipeService {
   }
 
   async updateById(id: string, updateRecipeDataInput: Recipe): Promise<Recipe> {
+    await updateRecipeValidation(updateRecipeDataInput);
+
     await this.findById(id);
 
     return await RecipeRepository.updateById(id, updateRecipeDataInput);
